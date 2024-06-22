@@ -3,10 +3,12 @@ import { Link } from "react-router-dom";
 import UserMenu from "../Menu/UserMenu";
 import AgentMenu from "../Menu/AgentMenu";
 import AdminMenu from "../Menu/AdminMenu";
+import useRole from "../../../Hooks/useRole";
 
 const Sidebar = () => {
   const [isActive, setActive] = useState(false);
-
+  const [role] = useRole();
+  console.log(role);
   // Sidebar Responsive Handler
   const handleToggle = () => {
     setActive(!isActive);
@@ -31,8 +33,8 @@ const Sidebar = () => {
           <div className="flex flex-col justify-between flex-1 mt-6">
             <nav>
               <UserMenu></UserMenu>
-              <AgentMenu></AgentMenu>
-              <AdminMenu></AdminMenu>
+              {role === "Agent" && <AgentMenu></AgentMenu>}
+              {role === "Admin" && <AdminMenu></AdminMenu>}
             </nav>
           </div>
         </div>

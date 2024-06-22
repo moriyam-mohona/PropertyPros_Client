@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { axiosCommon } from "../../../Hooks/useAxiosCommon";
-
-const ManageUsers = () => {
+const ManageRequest = () => {
   const [users, setUsers] = useState([]);
 
   useEffect(() => {
@@ -12,7 +11,7 @@ const ManageUsers = () => {
   const fetchUsers = () => {
     axiosCommon("/users")
       .then((res) => {
-        setUsers(res.data);
+        setUsers(res.data.filter((user) => user.status === "Requested"));
       })
       .catch((error) => {
         console.error("Error fetching users:", error);
@@ -35,8 +34,6 @@ const ManageUsers = () => {
   };
 
   const handleMarkFraud = (userId) => {
-    // Implement functionality to mark user as fraud
-    // Example: axiosCommon.put(`/user/${userId}`, { status: "fraud" });
     toast.warn("Mark Fraud functionality not implemented.");
   };
 
@@ -53,13 +50,12 @@ const ManageUsers = () => {
         toast.error("Failed to delete user.");
       });
   };
-
-  const handleMakeAgent = (userId) => {
+  const handleMakeAgent = (email) => {
+    console.log("handle Agent");
     axiosCommon
-      .put(`/user/${userId}`, { role: "agent" })
+      .patch(`/user/${email}`, { role: "Agent", status: "Verified" })
       .then((res) => {
         toast.success("User role updated to Agent successfully.");
-        // Update users state or refresh users list if necessary
         fetchUsers();
       })
       .catch((error) => {
@@ -67,17 +63,16 @@ const ManageUsers = () => {
         toast.error("Failed to update user role to Agent.");
       });
   };
-
   return (
     <div>
       <ToastContainer />
-      <h1 className="text-3xl font-bold mb-8 text-center">Manage Users</h1>
+      <h1 className="text-3xl font-bold mb-8 text-center">Manage Requests</h1>
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border border-gray-200">
           <thead className="bg-gray-200">
             <tr>
               <th className="px-4 py-2 text-left text-gray-600">#</th>
-              <th className="px-4 py-2 text-left text-gray-600">User Name</th>
+              {/* <th className="px-4 py-2 text-left text-gray-600">User Name</th> */}
               <th className="px-4 py-2 text-left text-gray-600">User Email</th>
               <th className="px-4 py-2 text-left text-gray-600">Actions</th>
             </tr>
@@ -86,7 +81,6 @@ const ManageUsers = () => {
             {users.map((user, index) => (
               <tr key={user._id} className="border-t">
                 <td className="px-4 py-2">{index + 1}</td>
-                <td className="px-4 py-2">{user.username}</td>
                 <td className="px-4 py-2">{user.email}</td>
                 <td className="px-4 py-2 flex gap-2">
                   <button
@@ -101,7 +95,7 @@ const ManageUsers = () => {
                     disabled={
                       user.role === "Agent" || user.status === "Verified"
                     }
-                    onClick={() => handleMakeAgent(user._id)}
+                    onClick={() => handleMakeAgent(user.email)}
                   >
                     {" "}
                     {user.role === "Admin" || user.role === "Agent"
@@ -130,4 +124,4 @@ const ManageUsers = () => {
   );
 };
 
-export default ManageUsers;
+export default ManageRequest;

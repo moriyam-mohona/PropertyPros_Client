@@ -16,6 +16,7 @@ import MyAddedProperties from "../Components/DashboardItems/AgentItems/MyAddedPr
 import UpdatePropertyForm from "../Components/DashboardItems/AgentItems/UpdatePropertyForm.jsx";
 import ManageProperties from "../Components/DashboardItems/AdminItems/ManageProperties.jsx";
 import ManageUsers from "../Components/DashboardItems/AdminItems/ManageUsers.jsx";
+import ManageRequest from "../Components/DashboardItems/AdminItems/ManageRequest.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -96,6 +97,10 @@ export const router = createBrowserRouter([
       {
         path: "manageUsers",
         element: <ManageUsers></ManageUsers>,
+      },
+      {
+        path: "manageRequest",
+        element: <ManageRequest></ManageRequest>,
       },
     ],
   },

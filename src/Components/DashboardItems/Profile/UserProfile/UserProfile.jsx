@@ -13,6 +13,7 @@ const UserProfile = () => {
   }, []);
   const [isClicked, setIsClicked] = useState(false);
   const handleRequest = () => {
+    console.log("handleRequest");
     setIsClicked(true);
     axiosCommon
       .put(`/user/${user.email}`, { status: "Requested" })
@@ -65,10 +66,10 @@ const UserProfile = () => {
             <div className="hidden md:block">
               <button
                 onClick={handleRequest}
-                disabled={userData.status === "None"}
+                disabled={userData.status !== "None"}
                 className="cursor-pointer hover:bg-neutral-100 py-3 px-4 text-sm font-semibold rounded-full transition"
               >
-                {userData.status === "None" ? "Requested" : "Request For Host"}
+                {userData.status === "None" ? "Request For Host" : "Requested"}
               </button>
             </div>
           )}
