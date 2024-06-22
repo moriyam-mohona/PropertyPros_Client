@@ -37,6 +37,10 @@ export const router = createBrowserRouter([
         element: <Signup></Signup>,
       },
       {
+        path: "offer/:id",
+        element: <MakeOfferForm></MakeOfferForm>,
+      },
+      {
         path: "/allProperties",
         element: (
           <PrivateRoute>
@@ -70,10 +74,7 @@ export const router = createBrowserRouter([
         path: "wishlist",
         element: <Wishlist />,
       },
-      {
-        path: "offer/:id",
-        element: <MakeOfferForm></MakeOfferForm>,
-      },
+
       {
         path: "userProfile",
         element: <UserProfile></UserProfile>,
