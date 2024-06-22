@@ -4,8 +4,8 @@ PropertyPros is a web application designed for managing properties, facilitating
 
 ## Admin Credentials
 
-- **Username:**
-- **Password:**
+- **Username:**admin@gmail.com
+- **Password:**Adm!n123
 
 ## Live Site URL
 
@@ -80,11 +80,7 @@ PropertyPros is a web application designed for managing properties, facilitating
 
 ## Contributing
 
-We welcome contributions from the community. Please follow our [Contribution Guidelines](CONTRIBUTING.md) for more details.
-
-## License
-
-This project is licensed under the [MIT License](LICENSE).
+We welcome contributions from the community. Please follow our [Contribution Guidelines]for more details.
 
 ---
 
