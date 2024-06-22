@@ -13,6 +13,8 @@ import MakeOfferForm from "../Components/DashboardItems/UserItems/MakeOfferForm.
 import UserProfile from "../Components/DashboardItems/Profile/UserProfile/UserProfile.jsx";
 import AddProperty from "../Components/DashboardItems/AgentItems/AddProperty.jsx";
 import MyAddedProperties from "../Components/DashboardItems/AgentItems/MyAddedProperties.jsx";
+import UpdatePropertyForm from "../Components/DashboardItems/AgentItems/UpdatePropertyForm.jsx";
+import { axiosCommon } from "../Hooks/useAxiosCommon.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -48,7 +50,9 @@ export const router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/Advertisement/${params.id}`),
+          fetch(
+            `https://property-pros-server.vercel.app/Advertisement/${params.id}`
+          ),
       },
     ],
   },
@@ -75,6 +79,10 @@ export const router = createBrowserRouter([
       {
         path: "addProperty",
         element: <AddProperty></AddProperty>,
+      },
+      {
+        path: "updateProperty/:id",
+        element: <UpdatePropertyForm></UpdatePropertyForm>,
       },
       {
         path: "myAddedProperties",

@@ -1,9 +1,9 @@
 import { useLoaderData } from "react-router-dom";
-import { IoIosPeople } from "react-icons/io";
 import { CiLocationOn } from "react-icons/ci";
 import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { axiosCommon } from "../../../Hooks/useAxiosCommon";
 
 const Details = () => {
   const singleProperty = useLoaderData();
@@ -24,7 +24,7 @@ const Details = () => {
 
   const addToWishlist = async () => {
     try {
-      const response = await axios.post("http://localhost:5000/wishlist", {
+      const response = await axiosCommon.post("/wishlist", {
         propertyId: _id,
         title,
         location,
@@ -47,7 +47,7 @@ const Details = () => {
 
   const submitReview = async () => {
     try {
-      const response = await axios.post(`http://localhost:5000/reviews`, {
+      const response = await axiosCommon.post(`/reviews`, {
         propertyId: _id,
         review,
       });

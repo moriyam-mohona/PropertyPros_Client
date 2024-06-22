@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { axiosCommon } from "../../../Hooks/useAxiosCommon";
 
 const MakeOfferForm = () => {
   const { id } = useParams();
@@ -10,8 +11,8 @@ const MakeOfferForm = () => {
 
   // Fetch property details based on id
   useEffect(() => {
-    axios
-      .get(`http://localhost:5000/Advertisement/${id}`)
+    axiosCommon
+      .get(`/Advertisement/${id}`)
       .then((response) => setProperty(response.data))
       .catch((error) => console.error("Error fetching property data:", error));
   }, [id]);

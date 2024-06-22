@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useAuth from "../../../Hooks/useAuth";
 import useAxiosCommon from "../../../Hooks/useAxiosCommon";
+import { Link } from "react-router-dom";
 
 const MyAddedProperties = () => {
   const { user } = useAuth();
@@ -23,6 +24,7 @@ const MyAddedProperties = () => {
 
     fetchProperties();
   }, [user.email]);
+  console.log(properties);
   const handleDelete = async (id) => {
     try {
       await axiosCommon.delete(`/api/properties/${id}`);
@@ -60,29 +62,12 @@ const MyAddedProperties = () => {
               Price Range: {property.priceRange}
             </p>
             {property.verificationStatus !== "rejected" && (
-              <button className="bg-blue-500 text-white p-2 mt-2 rounded">
-                <label htmlFor="my_modal_6" className="btn">
-                  Update
-                </label>
-                <input
-                  type="checkbox"
-                  id="my_modal_6"
-                  className="modal-toggle"
-                />{" "}
-                <div className="modal" role="dialog">
-                  <div className="modal-box">
-                    <h3 className="fon t-bold text-lg">Hello!</h3>
-                    <p className="py-4 text-black">
-                      This modal works with a hidden checkbox!
-                    </p>
-                    <div className="modal-action">
-                      <label htmlFor="my_modal_6" className="btn">
-                        Close!
-                      </label>
-                    </div>
-                  </div>
-                </div>
-              </button>
+              <Link
+                to={`/dashboard/updateProperty/${property._id}`}
+                className="bg-blue-500 text-white p-2 mt-2 rounded"
+              >
+                Update
+              </Link>
             )}
             <button
               className="bg-red-500 text-white p-2 mt-2 rounded"

@@ -1,22 +1,23 @@
 import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { axiosCommon } from "../../../Hooks/useAxiosCommon";
 
 const Wishlist = () => {
   const [wishlist, setWishlist] = useState([]);
 
   useEffect(() => {
     // Fetch wishlist data from the server
-    axios
-      .get("http://localhost:5000/wishlist")
+    axiosCommon
+      .get("/wishlist")
       .then((response) => setWishlist(response.data))
       .catch((error) => console.error("Error fetching wishlist data:", error));
   }, []);
 
   const handleRemove = (id) => {
     // Implement the remove functionality
-    axios
-      .delete(`http://localhost:5000/wishlist/${id}`)
+    axiosCommon
+      .delete(`/wishlist/${id}`)
       .then((response) => {
         setWishlist(wishlist.filter((item) => item._id !== id));
       })
