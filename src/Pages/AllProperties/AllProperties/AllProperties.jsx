@@ -18,9 +18,7 @@ const AllProperties = () => {
     queryFn: async () => {
       try {
         const { data } = await axiosSecure.get("/Advertisement");
-        return data.filter(
-          (property) => property.verificationStatus === "Verified"
-        );
+        return data.filter((property) => property.status === "Verified");
       } catch (error) {
         throw new Error("Failed to fetch advertisement data");
       }
@@ -119,7 +117,7 @@ const AllProperties = () => {
                 </div>
                 <p className="mb-2">
                   <span className="font-bold">Verification Status:</span>{" "}
-                  {property.verificationStatus}
+                  {property.status}
                 </p>
               </div>
               <p className="mb-2 text-lg">

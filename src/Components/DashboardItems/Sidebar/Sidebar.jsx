@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import UserMenu from "../Menu/UserMenu";
 import AgentMenu from "../Menu/AgentMenu";
+import AdminMenu from "../Menu/AdminMenu";
 
 const Sidebar = () => {
   const [isActive, setActive] = useState(false);
@@ -31,6 +32,7 @@ const Sidebar = () => {
             <nav>
               <UserMenu></UserMenu>
               <AgentMenu></AgentMenu>
+              <AdminMenu></AdminMenu>
             </nav>
           </div>
         </div>

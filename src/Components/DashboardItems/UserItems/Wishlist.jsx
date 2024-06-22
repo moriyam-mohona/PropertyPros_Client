@@ -7,7 +7,6 @@ const Wishlist = () => {
   const [wishlist, setWishlist] = useState([]);
 
   useEffect(() => {
-    // Fetch wishlist data from the server
     axiosCommon
       .get("/wishlist")
       .then((response) => setWishlist(response.data))
@@ -15,7 +14,6 @@ const Wishlist = () => {
   }, []);
 
   const handleRemove = (id) => {
-    // Implement the remove functionality
     axiosCommon
       .delete(`/wishlist/${id}`)
       .then((response) => {
@@ -23,13 +21,6 @@ const Wishlist = () => {
       })
       .catch((error) => console.error("Error removing item:", error));
   };
-
-  //   const handleMakeOffer = (id) => {
-  //     // Implement the make offer functionality
-  //     console.log(`Making an offer for property with id: ${id}`);
-  //     // Navigate to the offer page with property details and offer form
-  //   };
-
   return (
     <div className="container mx-auto py-8">
       <h1 className="text-3xl font-bold mb-8 text-center">My Wishlist</h1>

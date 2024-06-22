@@ -3,7 +3,6 @@ import logo from "../../../../public/Assets/logo.png";
 import { useContext, useState } from "react";
 import { AuthContext } from "../../../Providers/AuthProvider";
 import useAxiosSecure from "../../../Hooks/useAxiosSecure";
-import HostModal from "../HostModal";
 import { toast } from "react-toastify";
 import { axiosCommon } from "../../../Hooks/useAxiosCommon";
 
@@ -11,8 +10,6 @@ const NavBar = () => {
   const navigate = useNavigate();
   const { logout, user } = useContext(AuthContext);
   const axiosSecure = useAxiosSecure();
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleLogout = () => {
     logout()
@@ -23,32 +20,6 @@ const NavBar = () => {
         }
       })
       .catch((error) => console.error(error.message));
-  };
-
-  const openModal = () => setIsModalOpen(true);
-  const closeModal = () => setIsModalOpen(false);
-
-  const modalHandler = async () => {
-    console.log("I want to be a host");
-    try {
-      const currentUser = {
-        email: user?.email,
-        role: "user",
-        status: "Requested",
-      };
-      const { data } = await axiosSecure.put(`/user`, currentUser);
-      console.log(data);
-      if (data.modifiedCount > 0) {
-        toast.success("Success! Please wait for admin confirmation");
-      } else {
-        toast.success("Please!, Wait for admin approval");
-      }
-    } catch (err) {
-      console.log(err);
-      toast.error(err.message);
-    } finally {
-      closeModal();
-    }
   };
 
   const navOptions = (
@@ -71,14 +42,6 @@ const NavBar = () => {
           Dashboard
         </NavLink>
       </li>
-      <div className="hidden md:block">
-        <button
-          onClick={openModal}
-          className="cursor-pointer hover:bg-neutral-100 py-3 px-4 text-sm font-semibold rounded-full transition"
-        >
-          Host your home
-        </button>
-      </div>
     </>
   );
 
@@ -153,11 +116,6 @@ const NavBar = () => {
           )}
         </div>
       </div>
-      <HostModal
-        isOpen={isModalOpen}
-        closeModal={closeModal}
-        modalHandler={modalHandler}
-      />
     </>
   );
 };

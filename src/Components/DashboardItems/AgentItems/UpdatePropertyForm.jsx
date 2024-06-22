@@ -2,6 +2,8 @@ import { useParams } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 import { useEffect, useState } from "react";
 import { axiosCommon } from "../../../Hooks/useAxiosCommon";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const UpdatePropertyForm = () => {
   const { user } = useAuth();
@@ -31,17 +33,16 @@ const UpdatePropertyForm = () => {
     axiosCommon
       .put(`/api/properties/${id}`, updateData)
       .then((res) => {
-        // handle successful update, e.g., show a message or redirect
-        console.log("Property updated successfully:", res.data);
+        toast.success("Property updated successfully!");
       })
       .catch((err) => {
-        // handle error, e.g., show an error message
+        toast.error("Error updating property.");
         console.error("Error updating property:", err);
       });
   };
 
   return (
-    <div className="container mx-auto py-8">
+    <div className="container mx-auto py-8 px-4">
       <h1 className="text-3xl font-bold mb-8 text-center">Update Property</h1>
       <form className="max-w-md mx-auto" onSubmit={handleUpdate}>
         <div className="mb-4">
@@ -106,6 +107,7 @@ const UpdatePropertyForm = () => {
           Update Property
         </button>
       </form>
+      <ToastContainer />
     </div>
   );
 };

@@ -15,6 +15,7 @@ import AddProperty from "../Components/DashboardItems/AgentItems/AddProperty.jsx
 import MyAddedProperties from "../Components/DashboardItems/AgentItems/MyAddedProperties.jsx";
 import UpdatePropertyForm from "../Components/DashboardItems/AgentItems/UpdatePropertyForm.jsx";
 import { axiosCommon } from "../Hooks/useAxiosCommon.jsx";
+import ManageProperties from "../Components/DashboardItems/AdminItems/ManageProperties.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -87,6 +88,10 @@ export const router = createBrowserRouter([
       {
         path: "myAddedProperties",
         element: <MyAddedProperties></MyAddedProperties>,
+      },
+      {
+        path: "manageProperties",
+        element: <ManageProperties></ManageProperties>,
       },
     ],
   },

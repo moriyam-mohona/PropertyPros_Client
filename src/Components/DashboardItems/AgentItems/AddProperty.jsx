@@ -1,6 +1,8 @@
 import { useState } from "react";
 import useAuth from "../../../Hooks/useAuth";
 import { axiosCommon } from "../../../Hooks/useAxiosCommon";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AddProperty = () => {
   const { user } = useAuth();
@@ -23,14 +25,17 @@ const AddProperty = () => {
 
     try {
       const response = await axiosCommon.post("/api/properties", propertyData);
+      toast.success("Property added successfully!");
       console.log("Property added successfully:", response.data);
     } catch (error) {
+      toast.error("Error adding property. Please try again.");
       console.error("Error adding property:", error);
     }
   };
 
   return (
     <div className="container mx-auto py-8">
+      <ToastContainer />
       <h1 className="text-3xl font-bold mb-8 text-center">Add Property</h1>
       <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
         <div className="mb-4">
