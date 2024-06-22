@@ -1,15 +1,34 @@
+import { useEffect, useState } from "react";
 import useAuth from "../../../../Hooks/useAuth";
-// import { axiosCommon } from "../../../../Hooks/useAxiosCommon";
-import { axiosSecure } from "../../../../Hooks/useAxiosSecure";
 import useRole from "../../../../Hooks/useRole";
+import { axiosCommon } from "../../../../Hooks/useAxiosCommon";
 
 const UserProfile = () => {
   const { user } = useAuth();
 
   const [role, isLoading] = useRole();
+  const [userData, setUserData] = useState({});
+  useEffect(() => {
+    axiosCommon(`/user/${user.email}`).then((res) => setUserData(res.data));
+  }, []);
+  const [isClicked, setIsClicked] = useState(false);
   const handleRequest = () => {
-    axiosSecure(`/user`, { status: "Requested" });
+    setIsClicked(true);
+    axiosCommon
+      .put(`/user/${user.email}`, { status: "Requested" })
+      .then((response) => {
+        console.log("User status updated successfully:", response.data);
+        setUserData((prevUserData) => ({
+          ...prevUserData,
+          status: "Requested", // Assuming your backend returns the updated status
+        }));
+      })
+      .catch((error) => {
+        console.error("Error updating user status:", error);
+        // Handle error (e.g., show error message, reset state, etc.)
+      });
   };
+
   if (isLoading) return <p>Loading...</p>;
 
   return (
@@ -46,13 +65,13 @@ const UserProfile = () => {
             <div className="hidden md:block">
               <button
                 onClick={handleRequest}
+                disabled={userData.status === "None"}
                 className="cursor-pointer hover:bg-neutral-100 py-3 px-4 text-sm font-semibold rounded-full transition"
               >
-                Request For Host
+                {userData.status === "None" ? "Requested" : "Request For Host"}
               </button>
             </div>
           )}
-          {/* Add other relevant information here */}
         </div>
       </div>
     </div>

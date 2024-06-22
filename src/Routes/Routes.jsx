@@ -14,8 +14,8 @@ import UserProfile from "../Components/DashboardItems/Profile/UserProfile/UserPr
 import AddProperty from "../Components/DashboardItems/AgentItems/AddProperty.jsx";
 import MyAddedProperties from "../Components/DashboardItems/AgentItems/MyAddedProperties.jsx";
 import UpdatePropertyForm from "../Components/DashboardItems/AgentItems/UpdatePropertyForm.jsx";
-import { axiosCommon } from "../Hooks/useAxiosCommon.jsx";
 import ManageProperties from "../Components/DashboardItems/AdminItems/ManageProperties.jsx";
+import ManageUsers from "../Components/DashboardItems/AdminItems/ManageUsers.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -92,6 +92,10 @@ export const router = createBrowserRouter([
       {
         path: "manageProperties",
         element: <ManageProperties></ManageProperties>,
+      },
+      {
+        path: "manageUsers",
+        element: <ManageUsers></ManageUsers>,
       },
     ],
   },

@@ -7,6 +7,10 @@ const AdminMenu = () => {
         label={"Manage Properties"}
         address={"manageProperties"}
       ></MenuItem>
+      <MenuItem
+        label={"Manage Users"}
+        address={"manageUsers"}
+      ></MenuItem>
     </>
   );
 };
