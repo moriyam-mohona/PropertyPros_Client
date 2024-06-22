@@ -20,9 +20,6 @@ const githubProvider = new GithubAuthProvider();
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
-  // console.log(loading);
-
-  // console.log(user)
 
   const createUser = (email, password) => {
     setLoading(true);
@@ -64,9 +61,11 @@ const AuthProvider = ({ children }) => {
     );
     return data;
   };
+  console.log(user);
   const saveUser = async (user) => {
     const currentUser = {
       email: user?.email,
+      name: user?.displayName,
       role: "user",
       status: "None",
     };
