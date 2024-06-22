@@ -23,7 +23,6 @@ const MyAddedProperties = () => {
 
     fetchProperties();
   }, [user.email]);
-  console.log(properties);
   const handleDelete = async (id) => {
     try {
       await axiosCommon.delete(`/api/properties/${id}`);
@@ -56,15 +55,33 @@ const MyAddedProperties = () => {
               alt={user.displayName}
               className="w-10 h-10 rounded-full mb-1"
             />
-            <p className="text-gray-700 mb-1">
-              Verification Status: {property.verificationStatus}
-            </p>
+            <p className="text-gray-700 mb-1">Status: {property.status}</p>
             <p className="text-gray-700 mb-1">
               Price Range: {property.priceRange}
             </p>
             {property.verificationStatus !== "rejected" && (
               <button className="bg-blue-500 text-white p-2 mt-2 rounded">
-                Update
+                <label htmlFor="my_modal_6" className="btn">
+                  Update
+                </label>
+                <input
+                  type="checkbox"
+                  id="my_modal_6"
+                  className="modal-toggle"
+                />{" "}
+                <div className="modal" role="dialog">
+                  <div className="modal-box">
+                    <h3 className="fon t-bold text-lg">Hello!</h3>
+                    <p className="py-4 text-black">
+                      This modal works with a hidden checkbox!
+                    </p>
+                    <div className="modal-action">
+                      <label htmlFor="my_modal_6" className="btn">
+                        Close!
+                      </label>
+                    </div>
+                  </div>
+                </div>
               </button>
             )}
             <button
