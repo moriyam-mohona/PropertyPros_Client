@@ -13,7 +13,7 @@ const Details = () => {
 
   const {
     _id,
-    image,
+    imageUrl,
     title,
     location,
     agentName,
@@ -35,7 +35,7 @@ const Details = () => {
         verificationStatus,
         priceRange,
         details,
-        image,
+        imageUrl,
       });
 
       if (response.status === 200) {
@@ -71,7 +71,7 @@ const Details = () => {
       <div
         className="my-24 flex flex-col justify-center col-span-12 align-middle dark:bg-gray-300 bg-no-repeat bg-cover lg:col-span-6 lg:h-auto"
         style={{
-          backgroundImage: `url(${image})`,
+          backgroundImage: `url(${imageUrl})`,
           backgroundPosition: "center center",
           backgroundBlendMode: "multiply",
           backgroundSize: "cover",

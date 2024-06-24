@@ -31,7 +31,7 @@ const Wishlist = () => {
             className="card bg-white shadow-lg rounded-lg overflow-hidden"
           >
             <img
-              src={property.image}
+              src={property.imageUrl}
               alt={property.title}
               className="w-full h-48 object-cover"
             />
