@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 const AdvertisementCard = ({ advertisement }) => {
   const {
     _id,
-    image,
+    imageUrl,
     title,
     location,
     agentName,
@@ -16,7 +16,7 @@ const AdvertisementCard = ({ advertisement }) => {
   return (
     <div className="rounded-3xl p-5 card bg-base-100 border-2 border-[#008EC4] shadow-xl flex flex-col gap-2 justify-around mx-1 mb-1 w-full ">
       <img
-        src={image}
+        src={imageUrl}
         alt={title}
         className="object-cover object-center w-full h-60 mb-5 rounded-xl"
       />
