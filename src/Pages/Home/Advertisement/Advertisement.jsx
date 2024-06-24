@@ -17,7 +17,7 @@ const Advertisement = () => {
     queryFn: async () => {
       try {
         const { data } = await axiosSecure.get("/Advertisement");
-        return data;
+        return data.filter((property) => property.status === "Advertised");
       } catch (error) {
         throw new Error("Failed to fetch advertisement data");
       }

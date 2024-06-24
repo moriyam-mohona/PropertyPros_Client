@@ -10,6 +10,10 @@ const UserMenu = () => {
         address={"propertyBought"}
       ></MenuItem>
       <MenuItem label={"My Reviews"} address={"myReviews"}></MenuItem>
+      <MenuItem
+        label={"Offered Properties"}
+        address={"offeredProperties"}
+      ></MenuItem>
     </>
   );
 };

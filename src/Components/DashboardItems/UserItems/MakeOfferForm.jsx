@@ -10,17 +10,20 @@ const MakeOfferForm = () => {
   const [offeredAmount, setOfferedAmount] = useState("");
   const [buyingDate, setBuyingDate] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    axiosCommon
-      .get(`/Advertisement/${id}`)
-      .then((response) => setProperty(response.data))
-      .catch((error) => console.error("Error fetching property data:", error));
+    if (id) {
+      axiosCommon
+        .get(`/wishlist/${id}`)
+        .then((response) => setProperty(response.data))
+        .catch((error) =>
+          console.error("Error fetching property data:", error)
+        );
+    }
   }, [id]);
-
+  // console.log(property);
   const handleSubmit = () => {
-    console.log("handle Submit");
-
     if (!property) return;
 
     const [minPrice, maxPrice] = property.priceRange.split("-").map(Number);
@@ -32,22 +35,34 @@ const MakeOfferForm = () => {
       setErrorMessage("Offered amount must be within the price range");
       return;
     }
+    console.log(property.agentEmail);
 
     const offerDetails = {
-      propertyId: property._id,
-      buyerEmail: user.email,
-      buyerName: user.displayName,
+      agentEmail: property.agentEmail,
+      buyerEmail: user?.email,
+      buyerName: user?.displayName,
       offeredAmount,
       buyingDate,
+      title: property.title,
+      location: property.location,
       status: "pending",
     };
+
+    setIsLoading(true);
     axiosCommon
       .post("/offers", offerDetails)
       .then((response) => {
         console.log("Offer submitted successfully:", response.data);
+        setIsLoading(false);
         // Redirect to "Property bought" page or show a success message
+        // For example:
+        // navigate('/success'); // If using react-router
       })
-      .catch((error) => console.error("Error submitting offer:", error));
+      .catch((error) => {
+        console.error("Error submitting offer:", error);
+        setIsLoading(false);
+        setErrorMessage("Failed to submit the offer. Please try again.");
+      });
   };
 
   return (
@@ -56,14 +71,14 @@ const MakeOfferForm = () => {
         Make an Offer
       </h1>
       <div className="max-w-md mx-auto">
-        {property && (
+        {property ? (
           <>
             <div className="mb-4">
               <label className="block text-gray-700">Property Title</label>
               <input
                 type="text"
                 className="form-input mt-1 block w-full border-gray-300 rounded-md"
-                defaultValue={property.title}
+                value={property.title}
                 readOnly
               />
             </div>
@@ -72,7 +87,7 @@ const MakeOfferForm = () => {
               <input
                 type="text"
                 className="form-input mt-1 block w-full border-gray-300 rounded-md"
-                defaultValue={property.location}
+                value={property.location}
                 readOnly
               />
             </div>
@@ -81,11 +96,13 @@ const MakeOfferForm = () => {
               <input
                 type="text"
                 className="form-input mt-1 block w-full border-gray-300 rounded-md"
-                defaultValue={property.agentName}
+                value={property.agentName}
                 readOnly
               />
             </div>
           </>
+        ) : (
+          <p>Loading property details...</p>
         )}
         <div className="mb-4">
           <label className="block text-gray-700">Offered Amount</label>
@@ -104,7 +121,7 @@ const MakeOfferForm = () => {
           <input
             type="email"
             className="form-input mt-1 block w-full border-gray-300 rounded-md"
-            defaultValue={user?.email}
+            value={user?.email || ""}
             readOnly
           />
         </div>
@@ -113,7 +130,7 @@ const MakeOfferForm = () => {
           <input
             type="text"
             className="form-input mt-1 block w-full border-gray-300 rounded-md"
-            defaultValue={user?.displayName}
+            value={user?.displayName || ""}
             readOnly
           />
         </div>
@@ -129,8 +146,9 @@ const MakeOfferForm = () => {
         <button
           className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
           onClick={handleSubmit}
+          disabled={isLoading}
         >
-          Make Offer
+          {isLoading ? "Submitting..." : "Make Offer"}
         </button>
       </div>
     </div>

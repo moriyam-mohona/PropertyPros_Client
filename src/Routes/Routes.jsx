@@ -17,6 +17,10 @@ import UpdatePropertyForm from "../Components/DashboardItems/AgentItems/UpdatePr
 import ManageProperties from "../Components/DashboardItems/AdminItems/ManageProperties.jsx";
 import ManageUsers from "../Components/DashboardItems/AdminItems/ManageUsers.jsx";
 import ManageRequest from "../Components/DashboardItems/AdminItems/ManageRequest.jsx";
+import RequestedProperties from "../Components/DashboardItems/AgentItems/RequestedProperties.jsx";
+import OfferedProperties from "../Components/DashboardItems/UserItems/OfferedProperties.jsx";
+import SoldProperties from "../Components/DashboardItems/AgentItems/SoldProperties.jsx";
+import AdvertiseProperty from "../Components/DashboardItems/AdminItems/AdvertiseProperty.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -102,6 +106,22 @@ export const router = createBrowserRouter([
       {
         path: "manageRequest",
         element: <ManageRequest></ManageRequest>,
+      },
+      {
+        path: "requestedProperties",
+        element: <RequestedProperties></RequestedProperties>,
+      },
+      {
+        path: "offeredProperties",
+        element: <OfferedProperties></OfferedProperties>,
+      },
+      {
+        path: "soldProperties",
+        element: <SoldProperties></SoldProperties>,
+      },
+      {
+        path: "advertiseProperty",
+        element: <AdvertiseProperty></AdvertiseProperty>,
       },
     ],
   },

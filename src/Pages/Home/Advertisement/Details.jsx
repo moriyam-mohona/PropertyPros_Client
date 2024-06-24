@@ -17,10 +17,12 @@ const Details = () => {
     title,
     location,
     agentName,
+    agentEmail,
     verificationStatus,
     priceRange,
     details,
   } = singleProperty;
+  console.log(singleProperty);
 
   const addToWishlist = async () => {
     try {
@@ -29,6 +31,7 @@ const Details = () => {
         title,
         location,
         agentName,
+        agentEmail,
         verificationStatus,
         priceRange,
         details,
@@ -86,6 +89,10 @@ const Details = () => {
 
           <h3 className="text-md font-medium">
             <span className="font-bold text-lg">Agent Name :</span> {agentName}
+          </h3>
+          <h3 className="text-md font-medium">
+            <span className="font-bold text-lg">Agent Email :</span>{" "}
+            {agentEmail}
           </h3>
           <p className="flex gap-3 items-center text-lg">
             <div className="">

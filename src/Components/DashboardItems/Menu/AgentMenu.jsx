@@ -8,6 +8,11 @@ const AgentMenu = () => {
         label={"My Added Properties"}
         address={"myAddedProperties"}
       ></MenuItem>
+      <MenuItem
+        label={"Requested Properties"}
+        address={"requestedProperties"}
+      ></MenuItem>
+      <MenuItem label={"Sold Properties"} address={"soldProperties"}></MenuItem>
     </>
   );
 };
