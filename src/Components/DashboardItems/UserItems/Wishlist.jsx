@@ -21,10 +21,11 @@ const Wishlist = () => {
       })
       .catch((error) => console.error("Error removing item:", error));
   };
+
   return (
-    <div className="container mx-auto py-8">
+    <div className="container py-8 px-4">
       <h1 className="text-3xl font-bold mb-8 text-center">My Wishlist</h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-8 w-96 ">
         {wishlist.map((property) => (
           <div
             key={property._id}
@@ -41,7 +42,6 @@ const Wishlist = () => {
                 <strong>Location:</strong> {property.location}
               </p>
               <div className="flex items-center mb-2">
-                {" "}
                 <strong className="mr-2">Agent:</strong>
                 <img
                   src={property.agentImage}
