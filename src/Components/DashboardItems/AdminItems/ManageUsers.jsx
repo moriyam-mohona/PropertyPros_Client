@@ -25,7 +25,6 @@ const ManageUsers = () => {
       .patch(`/user/${userEmail}`, { role: "admin" })
       .then((res) => {
         toast.success("User role updated to Admin successfully.");
-        // Update users state or refresh users list if necessary
         fetchUsers();
       })
       .catch((error) => {
@@ -52,7 +51,6 @@ const ManageUsers = () => {
       .delete(`/user/${userId}`)
       .then((res) => {
         toast.success("User deleted successfully.");
-        // Update users state or refresh users list if necessary
         fetchUsers();
       })
       .catch((error) => {
@@ -66,7 +64,6 @@ const ManageUsers = () => {
       .patch(`/user/${userEmail}`, { role: "agent" })
       .then((res) => {
         toast.success("User role updated to Agent successfully.");
-        // Update users state or refresh users list if necessary
         fetchUsers();
       })
       .catch((error) => {
@@ -99,22 +96,22 @@ const ManageUsers = () => {
                   {user.role !== "fraud" && (
                     <button
                       className="bg-green-500 text-white px-3 py-1 rounded"
-                      disabled={user.role === "Admin"}
+                      disabled={user.role === "admin"}
                       onClick={() => handleMakeAdmin(user.email)}
                     >
-                      {user.role === "Admin" ? "Admin" : "Make Admin"}
+                      {user.role === "admin" ? "Admin" : "Make Admin"}
                     </button>
                   )}
                   {user.role !== "fraud" && (
                     <button
                       className="bg-green-500 text-white px-3 py-1 rounded"
                       disabled={
-                        user.role === "Agent" || user.status === "Verified"
+                        user.role === "agent" || user.status === "Verified"
                       }
                       onClick={() => handleMakeAgent(user.email)}
                     >
                       {" "}
-                      {user.role === "Admin" || user.role === "agent"
+                      {user.role === "admin" || user.role === "agent"
                         ? "Agent"
                         : " Make Agent"}
                     </button>

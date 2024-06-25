@@ -53,7 +53,7 @@ const ManageRequest = () => {
   const handleMakeAgent = (email) => {
     console.log("handle Agent");
     axiosCommon
-      .patch(`/user/${email}`, { role: "Agent", status: "Verified" })
+      .patch(`/user/${email}`, { role: "agent", status: "Verified" })
       .then((res) => {
         toast.success("User role updated to Agent successfully.");
         fetchUsers();
@@ -85,20 +85,20 @@ const ManageRequest = () => {
                 <td className="px-4 py-2 flex gap-2">
                   <button
                     className="bg-green-500 text-white px-3 py-1 rounded"
-                    disabled={user.role === "Admin"}
+                    disabled={user.role === "admin"}
                     onClick={() => handleMakeAdmin(user._id)}
                   >
-                    {user.role === "Admin" ? "Admin" : "Make Admin"}
+                    {user.role === "admin" ? "Admin" : "Make Admin"}
                   </button>
                   <button
                     className="bg-green-500 text-white px-3 py-1 rounded"
                     disabled={
-                      user.role === "Agent" || user.status === "Verified"
+                      user.role === "agent" || user.status === "Verified"
                     }
                     onClick={() => handleMakeAgent(user.email)}
                   >
                     {" "}
-                    {user.role === "Admin" || user.role === "Agent"
+                    {user.role === "admin" || user.role === "agent"
                       ? "Agent"
                       : " Make Agent"}
                   </button>

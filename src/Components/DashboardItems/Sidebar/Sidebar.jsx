@@ -57,10 +57,10 @@ const Sidebar = () => {
           <div className="flex flex-col justify-between flex-1 mt-6">
             <nav>
               <UserMenu onClick={handleToggle}></UserMenu>
-              {role === "Agent" && (
+              {role === "agent" && (
                 <AgentMenu onClick={handleToggle}></AgentMenu>
               )}
-              {role === "Admin" && (
+              {role === "admin" && (
                 <AdminMenu onClick={handleToggle}></AdminMenu>
               )}
             </nav>

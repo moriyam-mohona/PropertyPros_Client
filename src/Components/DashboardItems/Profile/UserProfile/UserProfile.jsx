@@ -63,7 +63,7 @@ const UserProfile = () => {
             </div>
           ) : (
             <div className="hidden md:block">
-              {user.role !== "Admin" && (
+              {user.role !== "admin" && (
                 <button
                   onClick={handleRequest}
                   disabled={userData.status || isClicked}
