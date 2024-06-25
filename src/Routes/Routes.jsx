@@ -22,6 +22,7 @@ import OfferedProperties from "../Components/DashboardItems/UserItems/OfferedPro
 import SoldProperties from "../Components/DashboardItems/AgentItems/SoldProperties.jsx";
 import AdvertiseProperty from "../Components/DashboardItems/AdminItems/AdvertiseProperty.jsx";
 import MyReviews from "../Components/DashboardItems/UserItems/MyReviews.jsx";
+import ManageReviews from "../Components/DashboardItems/AdminItems/ManageReviews.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -130,7 +131,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "manageReviews",
-        element: <MyReviews></MyReviews>,
+        element: <ManageReviews></ManageReviews>,
       },
     ],
   },

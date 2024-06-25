@@ -64,7 +64,6 @@ const Details = () => {
       console.error("Error adding property to wishlist:", error);
     }
   };
-
   const submitReview = async () => {
     setIsSubmitting(true);
     try {
@@ -72,6 +71,8 @@ const Details = () => {
         propertyId: _id,
         propertyTitle: title,
         agentName,
+        reviewerName: user.displayName,
+        reviewerImg: user.photoURL,
         reviewTime: new Date().toISOString(),
         reviewDescription,
         userEmail: user.email,
