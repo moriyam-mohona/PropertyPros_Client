@@ -5,13 +5,14 @@ import { axiosCommon } from "../../../../Hooks/useAxiosCommon";
 
 const UserProfile = () => {
   const { user } = useAuth();
-
   const [role, isLoading] = useRole();
   const [userData, setUserData] = useState({});
+  const [isClicked, setIsClicked] = useState(false);
+
   useEffect(() => {
     axiosCommon(`/user/${user.email}`).then((res) => setUserData(res.data));
-  }, []);
-  const [isClicked, setIsClicked] = useState(false);
+  }, [user.email]);
+
   const handleRequest = () => {
     console.log("handleRequest");
     setIsClicked(true);
@@ -39,14 +40,12 @@ const UserProfile = () => {
       <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
         <div className="px-6 py-4">
           <div className="mb-4">
-            <label className="block text-gray-700 font-bold">
-              User Name :{" "}
-            </label>
+            <label className="block text-gray-700 font-bold">User Name :</label>
             <p className="text-gray-700 mt-1">{user.displayName}</p>
           </div>
           <div className="mb-4">
             <label className="block text-gray-700 font-bold">
-              User Image :{" "}
+              User Image :
             </label>
             <div className="flex justify-center mt-2">
               <img
@@ -64,13 +63,15 @@ const UserProfile = () => {
             </div>
           ) : (
             <div className="hidden md:block">
-              <button
-                onClick={handleRequest}
-                disabled={userData.status !== "None"}
-                className="cursor-pointer hover:bg-neutral-100 py-3 px-4 text-sm font-semibold rounded-full transition"
-              >
-                {userData.status === "None" ? "Request For Host" : "Requested"}
-              </button>
+              {user.role !== "Admin" && (
+                <button
+                  onClick={handleRequest}
+                  disabled={userData.status || isClicked}
+                  className="cursor-pointer hover:bg-neutral-100 py-3 px-4 text-sm font-semibold rounded-full transition"
+                >
+                  {userData.status ? "Requested " : "Request For Host"}
+                </button>
+              )}
             </div>
           )}
         </div>
