@@ -112,7 +112,7 @@ export const router = createBrowserRouter([
         element: <RequestedProperties></RequestedProperties>,
       },
       {
-        path: "offeredProperties",
+        path: "propertyBought",
         element: <OfferedProperties></OfferedProperties>,
       },
       {

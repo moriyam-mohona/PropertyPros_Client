@@ -20,9 +20,9 @@ const ManageUsers = () => {
       });
   };
 
-  const handleMakeAdmin = (userId) => {
+  const handleMakeAdmin = (userEmail) => {
     axiosCommon
-      .put(`/user/${userId}`, { role: "admin" })
+      .patch(`/user/${userEmail}`, { role: "admin" })
       .then((res) => {
         toast.success("User role updated to Admin successfully.");
         // Update users state or refresh users list if necessary
@@ -35,11 +35,8 @@ const ManageUsers = () => {
   };
 
   const handleMarkFraud = (userId) => {
-    // Implement functionality to mark user as fraud
-    // Example: axiosCommon.put(`/user/${userId}`, { status: "fraud" });
     toast.warn("Mark Fraud functionality not implemented.");
   };
-
   const handleDeleteUser = (userId) => {
     axiosCommon
       .delete(`/user/${userId}`)
@@ -54,9 +51,9 @@ const ManageUsers = () => {
       });
   };
 
-  const handleMakeAgent = (userId) => {
+  const handleMakeAgent = (userEmail) => {
     axiosCommon
-      .put(`/user/${userId}`, { role: "agent" })
+      .patch(`/user/${userEmail}`, { role: "agent" })
       .then((res) => {
         toast.success("User role updated to Agent successfully.");
         // Update users state or refresh users list if necessary
@@ -92,7 +89,7 @@ const ManageUsers = () => {
                   <button
                     className="bg-green-500 text-white px-3 py-1 rounded"
                     disabled={user.role === "Admin"}
-                    onClick={() => handleMakeAdmin(user._id)}
+                    onClick={() => handleMakeAdmin(user.email)}
                   >
                     {user.role === "Admin" ? "Admin" : "Make Admin"}
                   </button>
@@ -101,10 +98,10 @@ const ManageUsers = () => {
                     disabled={
                       user.role === "Agent" || user.status === "Verified"
                     }
-                    onClick={() => handleMakeAgent(user._id)}
+                    onClick={() => handleMakeAgent(user.email)}
                   >
                     {" "}
-                    {user.role === "Admin" || user.role === "Agent"
+                    {user.role === "Admin" || user.role === "agent"
                       ? "Agent"
                       : " Make Agent"}
                   </button>
