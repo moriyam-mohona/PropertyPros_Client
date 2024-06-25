@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import useAuth from "../../../Hooks/useAuth";
 import { axiosCommon } from "../../../Hooks/useAxiosCommon";
+import SectionTitle from "../../SectionTitle/SectionTitle";
 
 const MakeOfferForm = () => {
   const { id } = useParams();
@@ -67,9 +68,9 @@ const MakeOfferForm = () => {
 
   return (
     <div className="container mx-auto py-8">
-      <h1 className="text-3xl font-bold mb-8 text-center mt-24">
-        Make an Offer
-      </h1>
+     
+      <SectionTitle heading={" Make an Offer"} />
+
       <div className="max-w-md mx-auto">
         {property ? (
           <>

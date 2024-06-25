@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import useAuth from "../../../../Hooks/useAuth";
 import useRole from "../../../../Hooks/useRole";
 import { axiosCommon } from "../../../../Hooks/useAxiosCommon";
+import SectionTitle from "../../../SectionTitle/SectionTitle";
 
 const UserProfile = () => {
   const { user } = useAuth();
@@ -35,7 +36,7 @@ const UserProfile = () => {
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <h1 className="text-3xl font-bold mb-8 text-center">My Profile</h1>
+      <SectionTitle heading={"My Profile"} />
 
       <div className="max-w-md mx-auto bg-white shadow-lg rounded-lg overflow-hidden">
         <div className="px-6 py-4">

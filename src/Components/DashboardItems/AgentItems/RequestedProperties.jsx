@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import useAuth from "../../../Hooks/useAuth";
 import { axiosCommon } from "../../../Hooks/useAxiosCommon";
+import SectionTitle from "../../SectionTitle/SectionTitle";
 
 const RequestedProperties = () => {
   const [properties, setProperties] = useState([]);
@@ -43,9 +44,8 @@ const RequestedProperties = () => {
 
   return (
     <div className="container mx-auto py-8">
-      <h3 className="text-3xl font-bold mb-8 text-center mt-24">
-        Requested Properties
-      </h3>
+      <SectionTitle heading={"Requested Properties"} />
+
       <div className="max-w-5xl mx-auto">
         <table className="min-w-full bg-white border border-gray-300">
           <thead>

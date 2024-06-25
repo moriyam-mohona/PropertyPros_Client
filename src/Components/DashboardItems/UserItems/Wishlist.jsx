@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { axiosCommon } from "../../../Hooks/useAxiosCommon";
 import useAuth from "../../../Hooks/useAuth";
+import SectionTitle from "../../SectionTitle/SectionTitle";
 
 const Wishlist = () => {
   const [wishlist, setWishlist] = useState([]);
@@ -25,7 +26,8 @@ const Wishlist = () => {
 
   return (
     <div className="container py-8 px-4">
-      <h1 className="text-3xl font-bold mb-8 text-center">My Wishlist</h1>
+      <SectionTitle heading={"My Wishlist"} />
+
       <div className="grid grid-cols-1 md:grid-cols-1 lg:grid-cols-2 gap-8 w-96 ">
         {wishlist.map((property) => (
           <div

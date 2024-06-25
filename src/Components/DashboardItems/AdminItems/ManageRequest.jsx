@@ -1,6 +1,8 @@
 import { useEffect, useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import { axiosCommon } from "../../../Hooks/useAxiosCommon";
+import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
+
 const ManageRequest = () => {
   const [users, setUsers] = useState([]);
 
@@ -66,7 +68,9 @@ const ManageRequest = () => {
   return (
     <div>
       <ToastContainer />
-      <h1 className="text-3xl font-bold mb-8 text-center">Manage Requests</h1>
+      <h1 className="text-3xl font-bold mb-8 text-center"></h1>
+      <SectionTitle heading={"Manage Requests"} />
+
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border border-gray-200">
           <thead className="bg-gray-200">

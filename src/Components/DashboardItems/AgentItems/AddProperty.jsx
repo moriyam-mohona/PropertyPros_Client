@@ -3,6 +3,7 @@ import useAuth from "../../../Hooks/useAuth";
 import { axiosCommon } from "../../../Hooks/useAxiosCommon";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import SectionTitle from "../../SectionTitle/SectionTitle";
 
 const AddProperty = () => {
   const { user } = useAuth();
@@ -36,7 +37,8 @@ const AddProperty = () => {
   return (
     <div className="container mx-auto py-8">
       <ToastContainer />
-      <h1 className="text-3xl font-bold mb-8 text-center">Add Property</h1>
+      <SectionTitle heading={"Add Property"} />
+
       <form className="max-w-md mx-auto" onSubmit={handleSubmit}>
         <div className="mb-4">
           <label className="block text-gray-700">Property Title</label>

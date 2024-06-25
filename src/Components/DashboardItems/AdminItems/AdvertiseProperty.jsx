@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { axiosCommon } from "../../../Hooks/useAxiosCommon";
 import { toast } from "react-toastify";
+import SectionTitle from "../../SectionTitle/SectionTitle";
 
 const AdvertiseProperty = () => {
   const [properties, setProperties] = useState([]);
@@ -31,7 +32,7 @@ const AdvertiseProperty = () => {
 
   return (
     <div className="container mx-auto py-8">
-      <h2 className="text-2xl font-semibold mb-6">Advertise Property</h2>
+      <SectionTitle heading={"Advertise Property"} />
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border rounded-lg">
           <thead>

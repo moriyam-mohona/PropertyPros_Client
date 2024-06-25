@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { axiosCommon } from "../../../Hooks/useAxiosCommon";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import SectionTitle from "../../SectionTitle/SectionTitle";
 
 const UpdatePropertyForm = () => {
   const { user } = useAuth();
@@ -43,7 +44,8 @@ const UpdatePropertyForm = () => {
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <h1 className="text-3xl font-bold mb-8 text-center">Update Property</h1>
+      <SectionTitle heading={"Update Property"} />
+
       <form className="max-w-md mx-auto" onSubmit={handleUpdate}>
         <div className="mb-4">
           <label className="block text-gray-700">Property Title</label>

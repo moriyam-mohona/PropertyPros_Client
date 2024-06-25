@@ -4,6 +4,7 @@ import { AuthContext } from "../../Providers/AuthProvider";
 import { useForm } from "react-hook-form";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import toast from "react-hot-toast";
+import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 
 const Signup = () => {
   const { createUser, updateUserProfile, setUser } = useContext(AuthContext);
@@ -60,11 +61,11 @@ const Signup = () => {
     <div className="hero min-h-screen mb-7">
       <div className="hero-content flex-col lg:col">
         <div className="text-center ">
-          <h1 className="text-5xl font-bold text-[#008EC4] ">Register Now</h1>
-          <p className="py-6">
-            Please provide accurate information and create an account to access
-            all the details
-          </p>
+          <SectionTitle
+            heading={"Register Now"}
+            subHeading="Please provide accurate information and create an account to access
+            all the details"
+          />
         </div>
         <div className="card w-full max-w-md mx-auto shadow-2xl bg-base-100">
           <form onSubmit={handleSubmit(onSubmit)} className="card-body">

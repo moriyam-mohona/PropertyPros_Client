@@ -4,6 +4,7 @@ import useAxiosCommon from "../../../Hooks/useAxiosCommon";
 import { Link } from "react-router-dom";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
+import SectionTitle from "../../SectionTitle/SectionTitle";
 
 const MyAddedProperties = () => {
   const { user } = useAuth();
@@ -57,9 +58,8 @@ const MyAddedProperties = () => {
 
   return (
     <div className="container mx-auto py-8 px-4">
-      <h1 className="text-3xl font-bold mb-8 text-center">
-        My Added Properties
-      </h1>
+      <SectionTitle heading={"My Added Properties"} />
+
       <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
         {properties?.map((property) => (
           <div

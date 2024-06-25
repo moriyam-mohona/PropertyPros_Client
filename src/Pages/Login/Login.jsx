@@ -4,6 +4,7 @@ import { useContext, useState } from "react";
 import { FaGoogle, FaRegEye, FaRegEyeSlash } from "react-icons/fa6";
 import toast from "react-hot-toast";
 import { AuthContext } from "../../Providers/AuthProvider";
+import SectionTitle from "../../Components/SectionTitle/SectionTitle";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -50,10 +51,10 @@ const Login = () => {
     <div className="hero min-h-screen">
       <div className="hero-content flex-col lg:col">
         <div className="text-center ">
-          <h1 className="text-5xl font-bold text-[#008EC4] ">Login now!</h1>
-          <p className="py-6">
-            Login Now To See Details and Manage Your Profile...
-          </p>
+          <SectionTitle
+            heading={"Login now!"}
+            subHeading="Login Now To See Details and Manage Your Profile..."
+          />
         </div>
         <div className="card w-full md:max-w-sm shadow-2xl bg-base-100">
           <form onSubmit={handleSubmit(onSubmit)} className="card-body">

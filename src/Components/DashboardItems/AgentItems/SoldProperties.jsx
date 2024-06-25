@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { axiosCommon } from "../../../Hooks/useAxiosCommon";
 import useAuth from "../../../Hooks/useAuth";
+import SectionTitle from "../../SectionTitle/SectionTitle";
 
 const SoldProperties = () => {
   const [properties, setProperties] = useState([]);
@@ -33,7 +34,8 @@ const SoldProperties = () => {
 
   return (
     <div className="container mx-auto py-8">
-      <h2 className="text-2xl font-semibold mb-6">Sold Properties</h2>
+      <SectionTitle heading={"Sold Properties"} />
+
       <div className="overflow-x-auto">
         <table className="min-w-full bg-white border rounded-lg">
           <thead>
