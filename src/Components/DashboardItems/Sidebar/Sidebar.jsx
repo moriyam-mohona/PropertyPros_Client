@@ -14,7 +14,7 @@ const Sidebar = () => {
   };
 
   return (
-    <>
+    <div className="h-full">
       {/* Toggle button for mobile view */}
       <button
         className="md:hidden p-2 m-2 text-gray-700"
@@ -40,10 +40,12 @@ const Sidebar = () => {
       <div
         className={`${
           isActive ? "block" : "hidden"
-        } md:block fixed md:relative z-10 bg-gray-100 w-64 px-2 py-4 my-20 md:my-0 h-full`}
+        } md:block fixed md:relative z-10 bg-gray-100 w-64 px-2 py-4 my-20 md:my-0 h-full transition-transform transform ${
+          isActive ? "translate-x-0" : "-translate-x-full"
+        } md:translate-x-0`}
       >
         <div>
-          <div className="w-full flex shadow-lg rounded-lg justify-center items-center mx-auto mb-4">
+          <div className="w-full flex shadow-lg rounded-lg justify-center items-center mx-auto mb-4 ">
             <Link to="/" onClick={handleToggle}>
               <img
                 src="../../../../public/Assets/logo.png"
@@ -74,7 +76,7 @@ const Sidebar = () => {
           onClick={handleToggle}
         ></div>
       )}
-    </>
+    </div>
   );
 };
 

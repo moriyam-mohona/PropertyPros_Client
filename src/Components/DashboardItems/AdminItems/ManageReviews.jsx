@@ -35,26 +35,30 @@ const ManageReviews = () => {
   };
 
   return (
-    <div>
-      <SectionTitle heading={"Manage Reviews"} />
-      <div className="review-cards">
+    <div className="container mx-auto py-2 px-2">
+      <SectionTitle heading="Manage Reviews" />
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3">
         {reviews.map((review) => (
           <div
             key={review._id}
-            className="card bg-base-100 w-96 shadow-xl review-card"
+            className="card bg-base-100 shadow-2xl rounded-lg"
           >
-            <figure>
-              <img src={review.reviewerImg} alt="Reviewer" />
+            <figure className="mt-3 flex justify-center">
+              <img
+                src={review.reviewerImg}
+                alt="Reviewer"
+                className="w-20 h-20 rounded-full object-cover"
+              />
             </figure>
-            <div className="card-body">
-              <div className="reviewer-info">
-                <p>Email: {review.userEmail}</p>
-                <p>Name: {review.reviewerName}</p>
+            <div className="card-body text-center">
+              <div className="reviewer-info mb-3">
+                <p className="font-bold">Email: {review.userEmail}</p>
+                <p className="font-bold">Name: {review.reviewerName}</p>
               </div>
-              <p>Review: {review.reviewDescription}</p>
-              <div className="card-actions justify-end">
+              <p className="mb-4">{review.reviewDescription}</p>
+              <div className="card-actions justify-center">
                 <button
-                  className="btn btn-primary"
+                  className="w-full btn btn-primary bg-blue-950 opacity-70 mb-3"
                   onClick={() => handleDeleteReview(review._id)}
                 >
                   Delete Review

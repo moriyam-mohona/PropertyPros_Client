@@ -60,7 +60,7 @@ const MyAddedProperties = () => {
     <div className="container mx-auto py-8 px-4">
       <SectionTitle heading={"My Added Properties"} />
 
-      <div className="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-3 gap-3">
         {properties?.map((property) => (
           <div
             key={property._id}
@@ -74,11 +74,7 @@ const MyAddedProperties = () => {
             <h2 className="text-xl font-bold mb-2">{property.title}</h2>
             <p className="text-gray-700 mb-1">Location: {property.location}</p>
             <p className="text-gray-700 mb-1">Agent: {property.agentName}</p>
-            <img
-              src={user.photoURL}
-              alt={user.displayName}
-              className="w-10 h-10 rounded-full mb-1"
-            />
+
             <p className="text-gray-700 mb-1">Status: {property.status}</p>
             <p className="text-gray-700 mb-1">
               Price Range: {property.priceRange}
@@ -86,13 +82,13 @@ const MyAddedProperties = () => {
             {property.verificationStatus !== "rejected" && (
               <Link
                 to={`/dashboard/updateProperty/${property._id}`}
-                className="bg-blue-500 text-white p-2 mt-2 rounded block text-center"
+                className="w-full btn btn-primary bg-blue-950 opacity-70 mb-3"
               >
                 Update
               </Link>
             )}
             <button
-              className="bg-red-500 text-white p-2 mt-2 rounded block text-center"
+              className="w-full btn btn-primary bg-red-500 opacity-70"
               onClick={() => handleDelete(property._id)}
             >
               Delete

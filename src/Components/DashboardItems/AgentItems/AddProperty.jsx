@@ -98,7 +98,10 @@ const AddProperty = () => {
             required
           />
         </div>
-        <button type="submit" className="w-full bg-blue-500 text-white p-2">
+        <button
+          type="submit"
+          className="w-full btn btn-primary bg-blue-950 opacity-70"
+        >
           Add Property
         </button>
       </form>

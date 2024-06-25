@@ -19,12 +19,10 @@ const OfferedProperties = () => {
 
   const handlePayment = async (property) => {
     try {
-      // Update offer status to "paid"
       await axiosCommon.patch(`/offers/${property._id}`, {
         status: "paid",
       });
 
-      // Refresh properties list after status update
       getProperties();
     } catch (error) {
       console.error("Error updating offer status:", error);

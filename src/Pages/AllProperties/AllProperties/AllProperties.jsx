@@ -89,7 +89,7 @@ const AllProperties = () => {
           <option value="desc">High to Low</option>
         </select>
       </div>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 my-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 my-5">
         {sortedProperties.map((property) => (
           <div
             key={property._id}
@@ -99,7 +99,7 @@ const AllProperties = () => {
             <img
               src={property.imageUrl}
               alt={property.title}
-              className="w-full flex-shrink-0 h-80 mb-4"
+              className="w-full flex-shrink-0 h-60 mb-4"
             />
             <div className="flex-grow flex flex-col justify-between">
               <div>

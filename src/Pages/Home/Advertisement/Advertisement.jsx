@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 const Advertisement = () => {
   const [advertisementData, setAdvertisementData] = useState([]);
   const axiosSecure = useAxiosSecure();
+
   const {
     data: fetchedAdvertisement = [],
     isLoading,
@@ -17,7 +18,9 @@ const Advertisement = () => {
     queryFn: async () => {
       try {
         const { data } = await axiosSecure.get("/Advertisement");
-        return data.filter((property) => property.status === "Advertised");
+        return data.filter(
+          (advertisement) => advertisement.status === "Advertised"
+        );
       } catch (error) {
         throw new Error("Failed to fetch advertisement data");
       }
@@ -31,7 +34,7 @@ const Advertisement = () => {
   }, [fetchedAdvertisement]);
 
   if (isLoading) {
-    return <div>Loading...</div>;
+    return <div>Loading...</div>; // Consider using a spinner component here
   }
 
   if (isError) {
@@ -45,8 +48,11 @@ const Advertisement = () => {
         heading={"Advertisement Section"}
       />
       <div className="mt-20 mb-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 lg:mx-auto">
-        {advertisementData.slice(0, 6).map((advertisement, index) => (
-          <AdvertisementCard key={index} advertisement={advertisement} />
+        {advertisementData.slice(0, 6).map((advertisement) => (
+          <AdvertisementCard
+            key={advertisement._id}
+            advertisement={advertisement}
+          />
         ))}
       </div>
       <Link

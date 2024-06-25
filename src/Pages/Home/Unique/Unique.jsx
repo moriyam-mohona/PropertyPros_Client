@@ -12,13 +12,14 @@ const Unique = () => {
 your company and don't forget to ask via our email or our
 customer service if you are interested in using our services"
       ></SectionTitle>
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-8">
+      <div className="grid sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
         <div className="card bg-base-100 shadow-xl">
           <figure className="px-10 pt-10 ">
             <img
               src={u1}
               alt="Shoes"
               className="rounded-xl bg-blue-950 opacity-50 p-3"
+              a
             />
           </figure>
           <div className="card-body items-center text-center">

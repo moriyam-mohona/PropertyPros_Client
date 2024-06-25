@@ -51,7 +51,6 @@ const Details = () => {
         agentEmail,
         status,
         priceRange,
-        details,
         imageUrl,
       });
 
@@ -99,7 +98,7 @@ const Details = () => {
   return (
     <div className="container grid grid-cols-12 mx-auto">
       <div
-        className="my-24 flex flex-col justify-center col-span-12 align-middle dark:bg-gray-300 bg-no-repeat bg-cover lg:col-span-6 lg:h-auto"
+        className="mt-24 flex flex-col justify-center col-span-12 align-middle dark:bg-gray-300 bg-no-repeat bg-cover lg:col-span-6  h-96"
         style={{
           backgroundImage: `url(${imageUrl})`,
           backgroundPosition: "center center",
@@ -113,7 +112,7 @@ const Details = () => {
           </button>
         </div>
       </div>
-      <div className=" my-24 flex flex-col col-span-12 p-6 divide-y lg:col-span-6 lg:p-10 dark:divide-gray-300">
+      <div className="  flex flex-col col-span-12 p-6 divide-y lg:col-span-6 lg:p-10 dark:divide-gray-300">
         <div className="pt-6 pb-4 space-y-2">
           <h1 className="py-4 text-3xl font-bold">{title}</h1>
 
@@ -134,10 +133,6 @@ const Details = () => {
           <p>
             <span className="font-bold text-lg">Price : </span>
             {priceRange}
-          </p>
-          <p>
-            <span className="font-bold text-lg">Details : </span>
-            {details}
           </p>
         </div>
         <button

@@ -1,5 +1,4 @@
 import { useEffect, useState } from "react";
-import axios from "axios";
 import toast from "react-hot-toast";
 import useAuth from "../../../Hooks/useAuth";
 import { axiosCommon } from "../../../Hooks/useAxiosCommon";
@@ -48,32 +47,36 @@ const MyReviews = () => {
     <div className="container mx-auto py-8 px-4">
       <SectionTitle heading={"My Reviews"} />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {userReviews.length > 0 ? (
           userReviews.map((review) => (
             <div
               key={review._id}
-              className="bg-white shadow-lg rounded-lg overflow-hidden"
+              className="bg-white shadow-lg rounded-lg overflow-hidden transition-transform transform hover:scale-105"
             >
               <div className="px-6 py-4">
                 <div className="mb-4">
-                  <p className="text-gray-700 font-bold">
-                    Property Title: {review.propertyTitle}
+                  <p className="text-gray-700">
+                    <span className="font-bold">Property Title:</span>{" "}
+                    {review.propertyTitle}
                   </p>
                 </div>
                 <div className="mb-4">
-                  <p className="text-gray-700 font-bold">
-                    Agent Name: {review.agentName}
+                  <p className="text-gray-700">
+                    <span className="font-bold">Agent Name:</span>{" "}
+                    {review.agentName}
                   </p>
                 </div>
                 <div className="mb-4">
-                  <p className="text-gray-700 font-bold">
-                    Review Time: {new Date(review.reviewTime).toLocaleString()}
+                  <p className="text-gray-700">
+                    <span className="font-bold">Review Time:</span>{" "}
+                    {new Date(review.reviewTime).toLocaleString()}
                   </p>
                 </div>
                 <div className="mb-4">
-                  <p className="text-gray-700 font-bold">
-                    Review Description: {review.reviewDescription}
+                  <p className="text-gray-700">
+                    <span className="font-bold">Review Description:</span>{" "}
+                    {review.reviewDescription}
                   </p>
                 </div>
                 <button
