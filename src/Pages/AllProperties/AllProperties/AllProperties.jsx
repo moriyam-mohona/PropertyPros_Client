@@ -18,7 +18,10 @@ const AllProperties = () => {
     queryFn: async () => {
       try {
         const { data } = await axiosSecure.get("/Advertisement");
-        return data.filter((property) => property.status === "Verified");
+        return data.filter(
+          (property) =>
+            property.status === "Verified" || property.status === "Advertised"
+        );
       } catch (error) {
         throw new Error("Failed to fetch advertisement data");
       }
@@ -94,7 +97,7 @@ const AllProperties = () => {
           >
             {/* Display each property */}
             <img
-              src={property.image}
+              src={property.imageUrl}
               alt={property.title}
               className="w-full flex-shrink-0 h-80 mb-4"
             />

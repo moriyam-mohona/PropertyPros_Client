@@ -4,13 +4,14 @@ import { useState } from "react";
 import axios from "axios";
 import toast from "react-hot-toast";
 import { axiosCommon } from "../../../Hooks/useAxiosCommon";
+import useAuth from "../../../Hooks/useAuth";
 
 const Details = () => {
   const singleProperty = useLoaderData();
   const [isWishlistModalOpen, setIsWishlistModalOpen] = useState(false);
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
   const [review, setReview] = useState("");
-
+  const { user } = useAuth();
   const {
     _id,
     imageUrl,
@@ -28,6 +29,7 @@ const Details = () => {
     try {
       const response = await axiosCommon.post("/wishlist", {
         propertyId: _id,
+        email: user.email,
         title,
         location,
         agentName,

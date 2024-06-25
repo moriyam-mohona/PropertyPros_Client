@@ -2,13 +2,14 @@ import { useEffect, useState } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
 import { axiosCommon } from "../../../Hooks/useAxiosCommon";
+import useAuth from "../../../Hooks/useAuth";
 
 const Wishlist = () => {
   const [wishlist, setWishlist] = useState([]);
-
+  const { user } = useAuth();
   useEffect(() => {
     axiosCommon
-      .get("/wishlist")
+      .get(`/wishlist?${user.email}`)
       .then((response) => setWishlist(response.data))
       .catch((error) => console.error("Error fetching wishlist data:", error));
   }, []);
@@ -29,7 +30,7 @@ const Wishlist = () => {
         {wishlist.map((property) => (
           <div
             key={property._id}
-            className="card bg-white shadow-lg rounded-lg overflow-hidden"
+            className="card bg-white shadow-lg rounded-lg overflow-hidden w-96"
           >
             <img
               src={property.imageUrl}
