@@ -21,6 +21,7 @@ import RequestedProperties from "../Components/DashboardItems/AgentItems/Request
 import OfferedProperties from "../Components/DashboardItems/UserItems/OfferedProperties.jsx";
 import SoldProperties from "../Components/DashboardItems/AgentItems/SoldProperties.jsx";
 import AdvertiseProperty from "../Components/DashboardItems/AdminItems/AdvertiseProperty.jsx";
+import MyReviews from "../Components/DashboardItems/UserItems/MyReviews.jsx";
 
 export const router = createBrowserRouter([
   {
@@ -122,6 +123,14 @@ export const router = createBrowserRouter([
       {
         path: "advertiseProperty",
         element: <AdvertiseProperty></AdvertiseProperty>,
+      },
+      {
+        path: "myReviews",
+        element: <MyReviews></MyReviews>,
+      },
+      {
+        path: "manageReviews",
+        element: <MyReviews></MyReviews>,
       },
     ],
   },

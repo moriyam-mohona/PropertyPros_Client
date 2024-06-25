@@ -10,7 +10,7 @@ const Details = () => {
   const singleProperty = useLoaderData();
   const [isWishlistModalOpen, setIsWishlistModalOpen] = useState(false);
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
-  const [review, setReview] = useState("");
+  const [reviewDescription, setReviewDescription] = useState("");
   const { user } = useAuth();
   const {
     _id,
@@ -19,11 +19,11 @@ const Details = () => {
     location,
     agentName,
     agentEmail,
-    verificationStatus,
+    status,
     priceRange,
     details,
   } = singleProperty;
-  console.log(singleProperty);
+  // console.log(singleProperty);
 
   const addToWishlist = async () => {
     try {
@@ -34,7 +34,7 @@ const Details = () => {
         location,
         agentName,
         agentEmail,
-        verificationStatus,
+        status,
         priceRange,
         details,
         imageUrl,
@@ -51,16 +51,21 @@ const Details = () => {
   };
 
   const submitReview = async () => {
+    console.log("submit");
     try {
       const response = await axiosCommon.post(`/reviews`, {
         propertyId: _id,
-        review,
+        propertyTitle: title,
+        agentName,
+        reviewTime: new Date().toISOString(),
+        reviewDescription,
+        userEmail: user.email,
       });
 
       if (response.status === 200) {
         toast.success("Review added successfully!");
         setIsReviewModalOpen(false);
-        setReview(""); // Clear the review input
+        setReviewDescription(""); // Clear the review input
       }
     } catch (error) {
       toast.error("Failed to add review.");
@@ -81,7 +86,7 @@ const Details = () => {
       >
         <div className="flex flex-col items-center p-8 py-12 text-center text-white">
           <button className=" bg-blue-950 opacity-90 text-white text-lg px-5 py-3 rounded-lg">
-            {verificationStatus}
+            {status}
           </button>
         </div>
       </div>
@@ -156,8 +161,8 @@ const Details = () => {
               <textarea
                 className="w-full p-2 border border-gray-300 rounded"
                 placeholder="Write your review here..."
-                value={review}
-                onChange={(e) => setReview(e.target.value)}
+                value={reviewDescription}
+                onChange={(e) => setReviewDescription(e.target.value)}
               />
               <div className="flex justify-end mt-4">
                 <button

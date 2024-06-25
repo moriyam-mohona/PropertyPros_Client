@@ -9,6 +9,7 @@ const AdminMenu = () => {
       ></MenuItem>
       <MenuItem label={"Manage Users"} address={"manageUsers"}></MenuItem>
       <MenuItem label={"Manage Request"} address={"manageRequest"}></MenuItem>
+      <MenuItem label={"Manage Reviews"} address={"manageReviews"}></MenuItem>
       <MenuItem
         label={"Advertise property"}
         address={"advertiseProperty"}
