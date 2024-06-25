@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import SectionTitle from "../../../Components/SectionTitle/SectionTitle";
 import { axiosCommon } from "../../../Hooks/useAxiosCommon";
 
@@ -8,7 +8,7 @@ const Review = () => {
   useEffect(() => {
     const fetchLatestReviews = async () => {
       try {
-        const response = await axiosCommon("/reviews");
+        const response = await axiosCommon("/reviews?limit=3");
         if (response.status === 200) {
           setLatestReviews(response.data);
         }
@@ -26,31 +26,38 @@ const Review = () => {
         heading={"Latest User Reviews"}
         subHeading="Check out our latest user reviews."
       />
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-24">
         {latestReviews.length > 0 ? (
           latestReviews.map((review) => (
             <div
               key={review._id}
-              className="bg-white shadow-lg rounded-lg overflow-hidden"
+              className="bg-white shadow-md rounded-lg overflow-hidden"
             >
-              {/* Reviewer Name */}
-              <div className="px-6 py-4">
-                <p className="text-gray-700 font-bold">
-                  Reviewer: {review.reviewerName}
+              <div className="avatar mx-auto ">
+                <div className="w-20 rounded-full ml-5">
+                  <img
+                    className="w-full h-full object-cover"
+                    src={review.reviewerImg}
+                    alt={`Image of ${review.reviewerName}`}
+                  />
+                </div>
+              </div>
+              <div className="px-6 py-1">
+                <p className="text-gray-700 font-bold text-2xl">
+                  {review.propertyTitle}
+                </p>
+              </div>
+              <div className="px-6">
+                <p className="text-gray-700">
+                  <span className="font-bold">Reviewer:</span>{" "}
+                  {review.reviewerName}
                 </p>
               </div>
 
-              {/* Review Description */}
               <div className="px-6 py-4">
-                <p className="text-gray-700 font-bold">
-                  Review Description: {review.reviewDescription}
-                </p>
-              </div>
-
-              {/* Property Title */}
-              <div className="px-6 py-4">
-                <p className="text-gray-700 font-bold">
-                  Property Title: {review.propertyTitle}
+                <p className="text-gray-700">
+                  <span className="font-bold">Review Description:</span>{" "}
+                  {review.reviewDescription}
                 </p>
               </div>
             </div>
