@@ -34,9 +34,19 @@ const ManageUsers = () => {
       });
   };
 
-  const handleMarkFraud = (userId) => {
-    toast.warn("Mark Fraud functionality not implemented.");
+  const handleMarkFraud = (userEmail) => {
+    axiosCommon
+      .patch(`/user/${userEmail}`, { role: "fraud" })
+      .then((res) => {
+        toast.warn("User role updated to Fraud.");
+        fetchUsers();
+      })
+      .catch((error) => {
+        console.error("Error updating user role:", error);
+        toast.error("Failed to make fraud");
+      });
   };
+
   const handleDeleteUser = (userId) => {
     axiosCommon
       .delete(`/user/${userId}`)
@@ -86,31 +96,38 @@ const ManageUsers = () => {
                 <td className="px-4 py-2">{user.username}</td>
                 <td className="px-4 py-2">{user.email}</td>
                 <td className="px-4 py-2 flex gap-2">
-                  <button
-                    className="bg-green-500 text-white px-3 py-1 rounded"
-                    disabled={user.role === "Admin"}
-                    onClick={() => handleMakeAdmin(user.email)}
-                  >
-                    {user.role === "Admin" ? "Admin" : "Make Admin"}
-                  </button>
-                  <button
-                    className="bg-green-500 text-white px-3 py-1 rounded"
-                    disabled={
-                      user.role === "Agent" || user.status === "Verified"
-                    }
-                    onClick={() => handleMakeAgent(user.email)}
-                  >
-                    {" "}
-                    {user.role === "Admin" || user.role === "agent"
-                      ? "Agent"
-                      : " Make Agent"}
-                  </button>
-                  <button
-                    className="bg-red-500 text-white px-3 py-1 rounded"
-                    onClick={() => handleMarkFraud(user._id)}
-                  >
-                    Mark Fraud
-                  </button>
+                  {user.role !== "fraud" && (
+                    <button
+                      className="bg-green-500 text-white px-3 py-1 rounded"
+                      disabled={user.role === "Admin"}
+                      onClick={() => handleMakeAdmin(user.email)}
+                    >
+                      {user.role === "Admin" ? "Admin" : "Make Admin"}
+                    </button>
+                  )}
+                  {user.role !== "fraud" && (
+                    <button
+                      className="bg-green-500 text-white px-3 py-1 rounded"
+                      disabled={
+                        user.role === "Agent" || user.status === "Verified"
+                      }
+                      onClick={() => handleMakeAgent(user.email)}
+                    >
+                      {" "}
+                      {user.role === "Admin" || user.role === "agent"
+                        ? "Agent"
+                        : " Make Agent"}
+                    </button>
+                  )}
+                  {user.role !== "fraud" && (
+                    <button
+                      className="bg-red-500 text-white px-3 py-1 rounded"
+                      onClick={() => handleMarkFraud(user.Email)}
+                    >
+                      Mark Fraud
+                    </button>
+                  )}
+
                   <button
                     className="bg-red-500 text-white px-3 py-1 rounded"
                     onClick={() => handleDeleteUser(user._id)}

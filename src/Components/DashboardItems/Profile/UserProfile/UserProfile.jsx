@@ -21,7 +21,7 @@ const UserProfile = () => {
         console.log("User status updated successfully:", response.data);
         setUserData((prevUserData) => ({
           ...prevUserData,
-          status: "Requested", // Assuming your backend returns the updated status
+          status: "Requested",
         }));
       })
       .catch((error) => {
