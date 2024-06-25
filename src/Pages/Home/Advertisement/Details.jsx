@@ -1,7 +1,6 @@
 import { useLoaderData } from "react-router-dom";
 import { CiLocationOn } from "react-icons/ci";
-import { useState } from "react";
-import axios from "axios";
+import { useState, useEffect } from "react";
 import toast from "react-hot-toast";
 import { axiosCommon } from "../../../Hooks/useAxiosCommon";
 import useAuth from "../../../Hooks/useAuth";
@@ -11,6 +10,8 @@ const Details = () => {
   const [isWishlistModalOpen, setIsWishlistModalOpen] = useState(false);
   const [isReviewModalOpen, setIsReviewModalOpen] = useState(false);
   const [reviewDescription, setReviewDescription] = useState("");
+  const [reviews, setReviews] = useState([]);
+  const [isSubmitting, setIsSubmitting] = useState(false);
   const { user } = useAuth();
   const {
     _id,
@@ -23,7 +24,21 @@ const Details = () => {
     priceRange,
     details,
   } = singleProperty;
-  // console.log(singleProperty);
+
+  // Fetch reviews on component mount
+  useEffect(() => {
+    fetchReviews();
+  }, [_id]);
+  const fetchReviews = async () => {
+    try {
+      const response = await axiosCommon.get(`/reviews/property/${_id}`);
+      if (response.status === 200) {
+        setReviews(response.data);
+      }
+    } catch (error) {
+      console.error("Error fetching reviews:", error);
+    }
+  };
 
   const addToWishlist = async () => {
     try {
@@ -51,7 +66,7 @@ const Details = () => {
   };
 
   const submitReview = async () => {
-    console.log("submit");
+    setIsSubmitting(true);
     try {
       const response = await axiosCommon.post(`/reviews`, {
         propertyId: _id,
@@ -66,13 +81,20 @@ const Details = () => {
         toast.success("Review added successfully!");
         setIsReviewModalOpen(false);
         setReviewDescription(""); // Clear the review input
+        setReviews([...reviews, response.data]); // Update the reviews state
+        fetchReviews();
       }
     } catch (error) {
       toast.error("Failed to add review.");
       console.error("Error adding review:", error);
+    } finally {
+      setIsSubmitting(false);
     }
   };
-
+  const handleCancel = () => {
+    setIsReviewModalOpen(false);
+    fetchReviews();
+  };
   return (
     <div className="container grid grid-cols-12 mx-auto">
       <div
@@ -167,17 +189,42 @@ const Details = () => {
               <div className="flex justify-end mt-4">
                 <button
                   className="btn btn-secondary mr-2"
-                  onClick={() => setIsReviewModalOpen(false)}
+                  onClick={() => handleCancel()}
                 >
                   Cancel
                 </button>
-                <button className="btn btn-primary" onClick={submitReview}>
-                  Submit
+                <button
+                  className="btn btn-primary"
+                  onClick={submitReview}
+                  disabled={isSubmitting}
+                >
+                  {isSubmitting ? "Submitting..." : "Submit"}
                 </button>
               </div>
             </div>
           </div>
         )}
+
+        {/* Reviews Section */}
+        <div className="pt-6 pb-4 space-y-2">
+          <h2 className="py-4 text-2xl font-bold">Reviews</h2>
+          {reviews.length > 0 ? (
+            reviews.map((review) => (
+              <div
+                key={review._id}
+                className="border-b border-gray-200 pb-4 mb-4"
+              >
+                <p className="text-lg font-semibold">{review.userEmail}</p>
+                <p className="text-sm text-gray-500">
+                  {new Date(review.reviewTime).toLocaleString()}
+                </p>
+                <p className="mt-2">{review.reviewDescription}</p>
+              </div>
+            ))
+          ) : (
+            <p>No reviews yet.</p>
+          )}
+        </div>
       </div>
     </div>
   );
