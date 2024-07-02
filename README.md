@@ -7,7 +7,7 @@ PropertyPros is a web application designed for managing properties, facilitating
 - **Password:** Adm!n123
 
 ## Live Site
-- [Live Demo](#) : https://roaring-lamington-45d3b6.netlify.app/
+- **Live Demo** : https://roaring-lamington-45d3b6.netlify.app/
 
 ## Key Features
 - **Property Listings:** View, filter, and get detailed descriptions of properties.
