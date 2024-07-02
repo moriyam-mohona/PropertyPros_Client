@@ -1,6 +1,6 @@
 # PropertyPros
 
-PropertyPros is a web application designed for managing properties, facilitating interactions between agents and clients, and providing a platform for property listings.
+PropertyPros is a web application designed to manage properties, facilitate interactions between agents and clients, and provide a platform for property listings.
 
  **Live Demo** : https://roaring-lamington-45d3b6.netlify.app/
  
@@ -15,19 +15,15 @@ PropertyPros is a web application designed for managing properties, facilitating
 ## Key Features
 - **Property Listings:** View, filter, and get detailed descriptions of properties.
 - **User Management:** Admin dashboard for managing users, roles, and permissions.
-- **Agent Tools:** List and manage properties, verification for new submissions.
+- **Agent Tools:** List and manage properties, and verification for new submissions.
 - **Wishlist & Favorites:** Save properties for future reference and receive updates.
-- **Authentication & Security:** Secure login with JWT tokens, encrypted data.
-- **Dashboard Analytics:** Insights into user engagement and sales trends.
+- **Authentication & Security:** Secure login with JWT tokens, and encrypted data.
 - **Responsive Design:** Optimized for desktop, tablet, and mobile devices.
-- **External Integration:** Google Maps API, payment gateway.
-- **Customer Support:** Contact form and support ticket system.
-- **Social Media Integration:** Share listings and follow updates.
 
 ## Getting Started
 1. Clone the repository: `git clone https://github.com/moriyam-mohona/PropertyPros_Client.git`
 2. Install dependencies: `npm install`
-3. Configure environment variables: Set up `.env` file with necessary configurations.
+3. Configure environment variables: Set up the `.env` file with the necessary configurations.
 4. Start the development server: `npm start`
 
 ## Technologies Used
