@@ -8,9 +8,12 @@ PropertyPros is a web application designed to manage properties, facilitate inte
 
   
 ## Admin Credentials
-- **Username:** admin@gmail.com
+- **Email:** admin@gmail.com
 - **Password:** Adm!n123
 
+## Agent Credentials
+- **Email:** agent@gmail.com
+- **Password:** Agent!123
 
 ## Key Features
 - **Property Listings:** View, filter, and get detailed descriptions of properties.
